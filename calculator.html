@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Calculator</title>
+    </head>
+    <style type="text/css">
+        .main{
+              width: 400px;
+            height: 525px;
+            margin: auto;
+            background-color: #245;
+            border: 2px solid black;
+            margin-top: 110px;
+            box-shadow: -20px 20px 5px gray;
+            border-radius: 20px;
+        }
+        input{
+            width: 360px;
+            height: 100px;
+            background-color: black;
+           border: none;
+            margin-top: 20px;
+            margin-left: 19px;
+            font-size: 45px;
+            text-align: right;
+            color: #ffffff;
+            border-radius: 15px;
+        }
+        button{
+             width: 60px;
+                height: 60px;
+                border: 2px solid black;
+                margin: 5px;
+                align-items: center;
+                font-size: 30px;
+                margin-left: 27px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                border-radius: 50%;
+                background-color: transparent;
+                color: whitesmoke;
+                box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.2);
+                cursor: pointer;
+           }
+           .case{
+            background: #fb7c14;
+           }
+           button:hover{
+             background-color: #acad46;
+           }
+           .case2{
+            background: #fb7c14;
+            color: #000000;
+           }
+           body{
+            background-color: #dfeea5;
+           }
+    </style>
+    <body>
+        <div class="main">
+            <input type="text" placeholder="0" id="inputbox" readonly>
+            <div>
+                <button class="case">Ac</button>
+                <button class="case">Del</button>
+                <button class="case2">%</button>
+                <button class="case2">/</button>
+            </div>
+            <div>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button class="case2" id="sound">*</button>
+            </div>
+            <div>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button class="case2">-</button>
+            </div>
+            <div>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="case2">+</button>
+            </div>
+            <div>
+                <button>0</button>
+                <button>00</button>
+                <button>.</button>
+                <button class="case">=</button>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        let input=document.getElementById('inputbox');
+        let buttons=document.querySelectorAll("button");
+        let abc="";
+        let def =Array.from(buttons);
+        def.forEach(button=>{
+            button.addEventListener('click',(v)=>{
+              if(v.target.innerHTML =='='){
+                abc=eval(abc);
+                input.value=abc;
+              }
+              else if(v.target.innerHTML == 'Ac'){
+                  abc="";
+                  input.value=abc;
+              }
+              else if(v.target.innerHTML=='Del'){
+                  abc=abc.substring(0, abc.length-1);
+                  input.value=abc;
+              }
+              else{
+                 abc += v.target.innerHTML;
+                 input.value=abc;
+             }
+            })
+        })
+        const clicksound=new Audio('click.opus');
+        const button = document.getElementById('sound');
+        button.addEventListener('click', ()=>{
+            clicksound.play();
+        });
+    </script>
+</html>
